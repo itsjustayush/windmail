@@ -1,0 +1,11 @@
+{
+  "name": "Throw",
+  "description": "A gamified, spatial messaging app to physically throw virtual letters, grenades, and hearts across an interactive 3D map to friends.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
+

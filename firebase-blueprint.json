@@ -1,0 +1,83 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with avatar, geographic location, and friends",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "username": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "city": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" },
+        "friendIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      },
+      "required": ["uid", "username", "city", "lat", "lng"]
+    },
+    "FriendRequest": {
+      "title": "FriendRequest",
+      "description": "Friend request sent from one user to another",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "senderUsername": { "type": "string" },
+        "senderAvatar": { "type": "string" },
+        "senderCity": { "type": "string" },
+        "senderLat": { "type": "number" },
+        "senderLng": { "type": "number" },
+        "receiverId": { "type": "string" },
+        "receiverUsername": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["senderId", "receiverId", "status"]
+    },
+    "Throw": {
+      "title": "Throw",
+      "description": "A spatial projectile object thrown between friends across coordinates",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "senderAvatar": { "type": "string" },
+        "senderCity": { "type": "string" },
+        "senderLat": { "type": "number" },
+        "senderLng": { "type": "number" },
+        "receiverId": { "type": "string" },
+        "receiverName": { "type": "string" },
+        "receiverAvatar": { "type": "string" },
+        "receiverCity": { "type": "string" },
+        "receiverLat": { "type": "number" },
+        "receiverLng": { "type": "number" },
+        "objectType": { "type": "string" },
+        "content": { "type": "string" },
+        "status": { "type": "string" },
+        "distanceMiles": { "type": "number" },
+        "departure_time": { "type": "number" },
+        "scheduled_arrival": { "type": "number" },
+        "trackingNumber": { "type": "string" },
+        "isFastTravel": { "type": "boolean" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["senderId", "receiverId", "objectType", "status", "departure_time", "scheduled_arrival"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Registered user profile details"
+    },
+    "/friend_requests/{requestId}": {
+      "schema": "FriendRequest",
+      "description": "Friend requests awaiting acceptance or decline"
+    },
+    "/throws/{throwId}": {
+      "schema": "Throw",
+      "description": "Spatial messaging projectile items"
+    }
+  }
+}
